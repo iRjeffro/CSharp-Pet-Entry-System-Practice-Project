@@ -254,10 +254,56 @@ do {
                 break;
 
             case "3":
-                Console.WriteLine("Challenge Project - please check back soon to see progress.");
+                int petCount = 0;
+
+                for (int i = 0; i < maxPets; i++)
+                {
+                    if (ourAnimals[i, 0] != "ID #: ")
+                    {
+                        petCount += 1;
+                    }
+                }
+                Console.WriteLine("Validating ages and descriptions...");
+                for (int j = 0; j < petCount; j++)
+                {
+                    bool ageValid = false;
+                    bool descriptionValid = false;
+                    do
+                    {
+                        string petAge = ourAnimals[j, 2];
+                        string petID = ourAnimals[j, 0];
+                        if (petAge == "" || petAge == "?")
+                        {
+                            ageValid = true;
+                            Console.WriteLine($"Pet {petID} has a missing or invalid age. Updating to \'unknown\'");
+                            ourAnimals[j, 2] = "unknown";
+                        } else if (int.TryParse(petAge))
+                        {
+                            ageValid = true;
+                        } else
+                        {
+                            ageValid = false;
+                        }
+
+                        string petDescription = ourAnimals[j, 4];
+                        if (petDescription == "" || petDescription == "?")
+                        {
+                            Console.WriteLine($"Pet {petID} has a missing or invalid description. Updating to \'unknown\'");
+                            ourAnimals[j, 2] = "unknown";
+                        } else if (string.TryParse(petDescription)){
+                            descriptionValid = true;
+                        }
+                    } while (!ageValid || !descriptionValid);
+
+
+
+
+                }
+
                 Console.WriteLine("Press the Enter key to continue.");
                 readResult = Console.ReadLine();
                 break;
+
             case "4":
                 Console.WriteLine("Challenge Project - please check back soon to see progress.");
                 Console.WriteLine("Press the Enter key to continue.");
