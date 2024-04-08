@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jeffro\\Desktop\\CsharpProjects\\GuidedProject\\Starter\\Starter.csproj",
+      "projectUniqueName": "C:\\Users\\Jeffro\\Desktop\\CsharpProjects\\GuidedProject\\PetEntrySystem\\Starter.csproj",
       "projectName": "Starter",
-      "projectPath": "C:\\Users\\Jeffro\\Desktop\\CsharpProjects\\GuidedProject\\Starter\\Starter.csproj",
+      "projectPath": "C:\\Users\\Jeffro\\Desktop\\CsharpProjects\\GuidedProject\\PetEntrySystem\\Starter.csproj",
       "packagesPath": "C:\\Users\\Jeffro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jeffro\\Desktop\\CsharpProjects\\GuidedProject\\Starter\\obj\\",
+      "outputPath": "C:\\Users\\Jeffro\\Desktop\\CsharpProjects\\GuidedProject\\PetEntrySystem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Jeffro\\AppData\\Roaming\\NuGet\\NuGet.Config"

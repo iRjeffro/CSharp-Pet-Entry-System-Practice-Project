@@ -254,8 +254,9 @@ do {
                 break;
 
             case "3":
-                int petCount = 0;
-
+                Console.WriteLine("Validating ages and descriptions...");
+                
+                petCount = 0;
                 for (int i = 0; i < maxPets; i++)
                 {
                     if (ourAnimals[i, 0] != "ID #: ")
@@ -263,52 +264,104 @@ do {
                         petCount += 1;
                     }
                 }
-                Console.WriteLine("Validating ages and descriptions...");
                 for (int j = 0; j < petCount; j++)
                 {
                     bool ageValid = false;
                     bool descriptionValid = false;
                     do
                     {
-                        string petAge = ourAnimals[j, 2];
+                        string petAge = ourAnimals[j, 2].Replace("Age: ", "");
                         string petID = ourAnimals[j, 0];
-                        if (petAge == "" || petAge == "?")
+                        int age;
+                        bool ageIsInteger = int.TryParse(petAge, out age);
+
+                        if (petAge == "" || petAge == "?" || petAge == null)
                         {
-                            ageValid = true;
                             Console.WriteLine($"Pet {petID} has a missing or invalid age. Updating to \'unknown\'");
-                            ourAnimals[j, 2] = "unknown";
-                        } else if (int.TryParse(petAge))
+                            ourAnimals[j, 2] = "Age: unknown";
+                            ageValid = true;
+                        } else if (ageIsInteger)
                         {
+                            Console.WriteLine($"Pet {petID} has a valid age.");
+                            ageValid = true;
+                        } else if (petAge != "unknown")
+                        {
+                            Console.WriteLine($"Pet {petID} has an invalid age. Updating to \'unknown\'");
+                            ourAnimals[j, 2] = "Age: unknown";
                             ageValid = true;
                         } else
                         {
-                            ageValid = false;
+                            ageValid = true;
                         }
 
-                        string petDescription = ourAnimals[j, 4];
-                        if (petDescription == "" || petDescription == "?")
+                        string petDescription = ourAnimals[j, 4].Replace("Physical description: ", "");
+                        if (petDescription == "" || petDescription == "?" || petDescription == null)
                         {
                             Console.WriteLine($"Pet {petID} has a missing or invalid description. Updating to \'unknown\'");
-                            ourAnimals[j, 2] = "unknown";
-                        } else if (string.TryParse(petDescription)){
+                            ourAnimals[j, 4] = "Physical description: unknown";
+                            descriptionValid = true;
+                        } else 
+                        {
+                            Console.WriteLine($"Pet {petID} has a valid description.");
                             descriptionValid = true;
                         }
-                    } while (!ageValid || !descriptionValid);
-
-
-
-
+                    } while (ageValid == false || descriptionValid == false);
                 }
 
+                Console.WriteLine("Ages and descriptions validated.");
                 Console.WriteLine("Press the Enter key to continue.");
                 readResult = Console.ReadLine();
                 break;
 
             case "4":
-                Console.WriteLine("Challenge Project - please check back soon to see progress.");
+                Console.WriteLine("Validating nicknames and personalities...");
+                
+                petCount = 0;
+                for (int i = 0; i < maxPets; i++)
+                {
+                    if (ourAnimals[i, 0] != "ID #: ")
+                    {
+                        petCount += 1;
+                    }
+                }
+                for (int j = 0; j < petCount; j++)
+                {
+                    bool nicknameValid = false;
+                    bool personalityValid = false;
+                    do
+                    {
+                        string petNickname = ourAnimals[j, 3].Replace("Nickname: ", "");
+                        string petID = ourAnimals[j, 0];
+                        if (petNickname == "" || petNickname == "?" || petNickname == null)
+                        {
+                            Console.WriteLine($"Pet {petID} has a missing or invalid nickname. Updating to \'unknown\'");
+                            ourAnimals[j, 3] = "Nickname: unknown";
+                            nicknameValid = true;
+                        } else
+                        {
+                            Console.WriteLine($"Pet {petID} has a valid nickname.");
+                            nicknameValid = true;
+                        }
+
+                        string petPersonality = ourAnimals[j, 5].Replace("Personality: ", "");
+                        if (petPersonality == "" || petPersonality == "?" || petPersonality == null)
+                        {
+                            Console.WriteLine($"Pet {petID} has a missing or invalid personality. Updating to \'unknown\'");
+                            ourAnimals[j, 5] = "Personality: unknown";
+                            personalityValid = true;
+                        } else 
+                        {
+                            Console.WriteLine($"Pet {petID} has a valid personality.");
+                            personalityValid = true;
+                        }
+                    } while (nicknameValid == false || personalityValid == false);
+                }
+
+                Console.WriteLine("Nicknames and personalities validated.");
                 Console.WriteLine("Press the Enter key to continue.");
                 readResult = Console.ReadLine();
                 break;
+
             case "5":
                 Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
                 Console.WriteLine("Press the Enter key to continue.");
